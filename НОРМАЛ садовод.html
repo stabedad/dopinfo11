@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ландшафтный дизайн | Ваше имя</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3a5a40;
+            --secondary-color: #588157;
+            --accent-color: #a3b18a;
+            --text-light: #ffffff;
+            --text-dark: #344e41;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+            --blur: blur(10px);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-light);
+            background: linear-gradient(135deg, #2d6a4f, #1b4332);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Шапка */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: var(--blur);
+            background-color: rgba(58, 90, 64, 0.7);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-scrolled {
+            padding: 0.5rem 2rem;
+            background-color: rgba(26, 64, 43, 0.9);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 400;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            box-shadow: 0 0 15px rgba(163, 177, 138, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-light);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Герой */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            z-index: -1;
+            filter: blur(5px);
+        }
+
+        .hero-content {
+            width: 60%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 80%;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .secondary-button {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .secondary-button:hover {
+            color: var(--accent-color);
+        }
+
+        .hero-image {
+            width: 40%;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateY(-15deg);
+            transition: var(--transition);
+        }
+
+        .hero-image:hover img {
+            transform: perspective(1000px) rotateY(-5deg);
+        }
+
+        .decor-circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: var(--blur);
+            z-index: -1;
+        }
+
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 5%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 15%;
+            right: 10%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .circle-3 {
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            left: 20%;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Преимущества */
+        .benefits {
+            padding: 6rem 8%;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .benefits-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .benefit-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            border: var(--glass-border);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .benefit-card.large {
+            flex: 1.5;
+        }
+
+        .benefit-card.small {
+            flex: 1;
+        }
+
+        .benefit-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+            color: var(--accent-color);
+        }
+
+        .benefit-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-description {
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* Портфолио */
+        .portfolio {
+            padding: 6rem 8%;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: var(--blur);
+        }
+
+        .portfolio-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 250px;
+            transition: var(--transition);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.03);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-category {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Отзывы */
+        .testimonials {
+            padding: 6rem 8%;
+            position: relative;
+        }
+
+        .testimonials-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .testimonial-card {
+            flex: 0 0 300px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border-radius: 20px;
+            padding: 2rem;
+            scroll-snap-align: start;
+            border: var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            backdrop-filter: blur(15px);
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid var(--accent-color);
+        }
+
+        .testimonial-rating {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+        }
+
+        .testimonial-company {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* Контакты */
+        .contact {
+            padding: 6rem 8%;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: var(--blur);
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border-radius: 20px;
+            padding: 2rem;
+            border: var(--glass-border);
+        }
+
+        .contact-form {
+            flex: 1;
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border-radius: 20px;
+            padding: 2rem;
+            border: var(--glass-border);
+        }
+
+        .contact-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .contact-text {
+            font-weight: 300;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: var(--blur);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            border: var(--glass-border);
+        }
+
+        .form-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        textarea.form-input {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 0.8rem 2rem;
+            border-radius: 20px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            box-shadow: 0 0 15px rgba(163, 177, 138, 0.7);
+        }
+
+        /* Подвал */
+        footer {
+            background: rgba(26, 64, 43, 0.9);
+            backdrop-filter: var(--blur);
+            padding: 4rem 8% 2rem;
+            border-top: var(--glass-border);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .footer-about {
+            font-weight: 300;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--accent-color);
+            color: var(--text-dark);
+            transform: translateY(-5px);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 300;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-links i {
+            font-size: 0.8rem;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .footer-contact-icon {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 300;
+            opacity: 0.7;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .hero-content {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .benefits-container {
+                flex-direction: column;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(26, 64, 43, 0.95);
+                backdrop-filter: var(--blur);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                max-width: 100%;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .portfolio-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cta-button, .secondary-button {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header id="header">
+        <a href="#" class="logo">
+            <i class="fas fa-leaf"></i>
+            <span>Зеленый рай</span>
+        </a>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#benefits">Преимущества</a></li>
+                <li><a href="#portfolio">Портфолио</a></li>
+                <li><a href="#testimonials">Отзывы</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Записаться</a>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Герой -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Создаем сады вашей мечты</h1>
+            <p>Премиум-сервис по ландшафтному дизайну и уходу за садом. Превратим ваш участок в произведение искусства.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button">Забронировать</a>
+                <a href="#portfolio" class="secondary-button">Узнать больше <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Пример сада">
+        </div>
+        
+        <div class="decor-circle circle-1"></div>
+        <div class="decor-circle circle-2"></div>
+        <div class="decor-circle circle-3"></div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="benefits" id="benefits">
+        <h2 class="section-title">Почему выбирают нас</h2>
+        <div class="benefits-container">
+            <div class="benefit-card large">
+                <div class="benefit-number">01</div>
+                <div class="benefit-icon"><i class="fas fa-seedling"></i></div>
+                <h3 class="benefit-title">Индивидуальный подход</h3>
+                <p class="benefit-description">Каждый проект создается с нуля с учетом ваших пожеланий, особенностей участка и климатических условий. Мы не используем шаблонные решения.</p>
+            </div>
+            <div class="benefit-card small">
+                <div class="benefit-number">02</div>
+                <div class="benefit-icon"><i class="fas fa-tree"></i></div>
+                <h3 class="benefit-title">Экологичные материалы</h3>
+                <p class="benefit-description">Используем только проверенные материалы и растения, которые хорошо приживаются в нашем климате.</p>
+            </div>
+            <div class="benefit-card small">
+                <div class="benefit-number">03</div>
+                <div class="benefit-icon"><i class="fas fa-award"></i></div>
+                <h3 class="benefit-title">Гарантия качества</h3>
+                <p class="benefit-description">Даем гарантию на все виды работ и растений. Регулярный контроль качества на всех этапах реализации проекта.</p>
+            </div>
+        </div>
+    </section>
+
+   <!-- Портфолио -->
+<section class="portfolio" id="portfolio">
+    <h2 class="section-title">Наши работы</h2>
+    <div class="portfolio-gallery">
+        <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Современный сад">
+            <div class="portfolio-overlay">
+                <h3 class="portfolio-title">Современный сад</h3>
+                <p class="portfolio-category">Ландшафтный дизайн</p>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Английский сад">
+            <div class="portfolio-overlay">
+                <h3 class="portfolio-title">Английский сад</h3>
+                <p class="portfolio-category">Полный цикл работ</p>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfe3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Минималистичный дизайн">
+            <div class="portfolio-overlay">
+                <h3 class="portfolio-title">Минималистичный дизайн</h3>
+                <p class="portfolio-category">Современный стиль</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Отзывы -->
+<section class="testimonials" id="testimonials">
+    <h2 class="section-title">Отзывы клиентов</h2>
+    <div class="testimonials-container">
+        <div class="testimonial-card">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Клиент 1" class="testimonial-avatar">
+            <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <span>5.0</span>
+            </div>
+            <p class="testimonial-text">Прекрасная работа! Сад выглядит именно так, как я представляла. Очень внимательно отнеслись ко всем моим пожеланиям.</p>
+            <div class="testimonial-author">Елена Смирнова</div>
+            <div class="testimonial-company">Частный клиент</div>
+        </div>
+        <div class="testimonial-card">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Клиент 2" class="testimonial-avatar">
+            <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span>4.5</span>
+            </div>
+            <p class="testimonial-text">Профессиональный подход и качественное исполнение. Особенно порадовало, что растения прижились все без исключения.</p>
+            <div class="testimonial-author">Александр Петров</div>
+            <div class="testimonial-company">Ресторан "Зеленая роща"</div>
+        </div>
+        <div class="testimonial-card">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Клиент 3" class="testimonial-avatar">
+            <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <span>5.0</span>
+            </div>
+            <p class="testimonial-text">Заказывали ландшафтный дизайн для загородного дома. Результат превзошел все ожидания! Теперь это наше любимое место для отдыха.</p>
+            <div class="testimonial-author">Ольга Иванова</div>
+            <div class="testimonial-company">Частный клиент</div>
+        </div>
+        <div class="testimonial-card">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Клиент 4" class="testimonial-avatar">
+            <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <span>5.0</span>
+            </div>
+            <p class="testimonial-text">Заказал ландшафтный дизайн для своего загородного участка. Результат превзошел все ожидания! Команда профессионалов, которые действительно любят свое дело. Особенно порадовало внимание к деталям.</p>
+            <div class="testimonial-author">Дмитрий Волков</div>
+            <div class="testimonial-company">Частный клиент</div>
+        </div>
+    </div>
+</section>
+    <!-- Контакты -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Свяжитесь с нами</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3 class="contact-title">Контактная информация</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <p class="contact-text">г. Ваш город, ул. Садовая, 123</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt contact-icon"></i>
+                    <p class="contact-text">+7 XXX XXX-XX-XX</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <p class="contact-text">info@vashsad.ru</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock contact-icon"></i>
+                    <p class="contact-text">Пн-Пт: 9:00 - 18:00<br>Сб: 10:00 - 15:00<br>Вс: выходной</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3 class="contact-title">Форма обратной связи</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Ваше имя</label>
+                        <input type="text" id="name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Телефон</label>
+                        <input type="tel" id="phone" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Сообщение</label>
+                        <textarea id="message" class="form-input" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <a href="#" class="footer-logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Зеленый рай</span>
+                </a>
+                <p class="footer-about">Профессиональный ландшафтный дизайн и уход за садом. Создаем уникальные проекты с 2010 года.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Навигация</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Главная</a></li>
+                    <li><a href="#benefits"><i class="fas fa-chevron-right"></i> Преимущества</a></li>
+                    <li><a href="#portfolio"><i class="fas fa-chevron-right"></i> Портфолио</a></li>
+                    <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Отзывы</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Услуги</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Ландшафтный дизайн</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Озеленение</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Системы полива</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Уход за садом</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Зимнее обслуживание</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Контакты</h3>
+                <div class="footer-contact-item">
+                    <i class="fas fa-map-marker-alt footer-contact-icon"></i>
+                    <span>г. Ваш город, ул. Садовая, 123</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone-alt footer-contact-icon"></i>
+                    <span>+7 XXX XXX-XX-XX</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-envelope footer-contact-icon"></i>
+                    <span>info@vashsad.ru</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-clock footer-contact-icon"></i>
+                    <span>Пн-Пт: 9:00 - 18:00</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Зеленый рай. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Меню бургер
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Изменение шапки при скролле
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Параллакс эффект для декоративных кругов
+        window.addEventListener('mousemove', (e) => {
+            const circles = document.querySelectorAll('.decor-circle');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            circles.forEach((circle, index) => {
+                const speed = index + 1;
+                const xPos = x * 20 * speed;
+                const yPos = y * 20 * speed;
+                
+                circle.style.transform = `translate(${xPos}px, ${yPos}px)`;
+            });
+        });
+        
+        // Анимация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.hero-content, .benefit-card, .portfolio-item, .testimonial-card, .contact-info, .contact-form');
+            
+            elements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
